@@ -1,0 +1,215 @@
+@model HTA.Models.Devotee
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Devotee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="Devotee_ID" />
+        <dt>
+            @Html.DisplayNameFor(model => model.LoginEmail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LoginEmail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TemporaryPassord)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TemporaryPassord)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Home_Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Home_Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Last_Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.First_Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.First_Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Middle_Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Middle_Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Is_Company)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Is_Company)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Company_Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Company_Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address_1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address_1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address_2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address_2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StateID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StateID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Zip)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Zip)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Work_Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Work_Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Work_Phone_Ext)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Work_Phone_Ext)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cell_Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cell_Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fax)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sex)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sex)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DOB)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Wedding_Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Wedding_Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MemberType_ID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MemberType_ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Gothram_ID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gothram_ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Star_ID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Star_ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Is_Active)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Is_Active)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Is_Mailing)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Is_Mailing)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Is_Emailing)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Is_Emailing)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Is_ProfileComplete)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Is_ProfileComplete)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Modified)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Last_Modified)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Who_Modified)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Who_Modified)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_Created)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date_Created)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_LoggedIn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Last_LoggedIn)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>
