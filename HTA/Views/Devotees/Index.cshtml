@@ -1,4 +1,5 @@
-@model IEnumerable<HTA.Models.Devotee>
+@model PaginatedList<HTA.Models.Devotee>
+
 
 @{
     ViewData["Title"] = "Index";
@@ -9,104 +10,113 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<form asp-controller="Movies" asp-action="Index">
+    <p>
+        Title: <input type="text" name="SearchString" value="@ViewData["currentFilter"]">
+        <input type="submit" value="Search" class="btn btn-default" /> |
+        <a asp-action="Index">Back to Full List</a>
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.LoginEmail)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().LoginEmail)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Password)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Password)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TemporaryPassord)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().TemporaryPassord)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Home_Phone)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Home_Phone)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Last_Name)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Last_Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.First_Name)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().First_Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Middle_Name)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Middle_Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Is_Company)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Is_Company)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Company_Name)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Company_Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Address_1)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Address_1)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Address_2)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Address_2)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.City)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().City)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.StateID)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().StateID)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Zip)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Zip)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Work_Phone)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Work_Phone)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Work_Phone_Ext)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Work_Phone_Ext)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Cell_Phone)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Cell_Phone)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Fax)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Fax)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Sex)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Sex)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DOB)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().DOB)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Wedding_Date)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Wedding_Date)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.MemberType_ID)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().MemberType_ID)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Gothram_ID)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Gothram_ID)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Star_ID)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Star_ID)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Is_Active)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Is_Active)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Is_Mailing)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Is_Mailing)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Is_Emailing)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Is_Emailing)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Is_ProfileComplete)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Is_ProfileComplete)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Last_Modified)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Last_Modified)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Who_Modified)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Who_Modified)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Date_Created)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Date_Created)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Last_LoggedIn)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Last_LoggedIn)
                 </th>
             <th></th>
         </tr>
@@ -219,3 +229,23 @@
 }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

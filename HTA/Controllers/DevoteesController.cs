@@ -19,9 +19,27 @@ namespace HTA.Controllers
         }
 
         // GET: Devotees
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string currentFilter, string searchString, int? page)
         {
-            return View(await _context.Devotee.ToListAsync());
+            var devotees = from m in _context.Devotee
+                         select m;
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewData["CurrentFilter"] = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                devotees = devotees.Where(s => s.First_Name.Contains(searchString));
+            }
+
+            int pageSize = 25;
+            return View(await PaginatedList<Devotee>.CreateAsync(devotees.AsNoTracking(), page ?? 1, pageSize));
         }
 
         // GET: Devotees/Details/5

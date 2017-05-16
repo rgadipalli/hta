@@ -32,7 +32,11 @@ namespace HTA.Models
         public string Cell_Phone { get; set; }
         public string Fax { get; set; }
         public string Sex { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DOB { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? Wedding_Date { get; set; }
         public int? MemberType_ID { get; set; }
         public int? Gothram_ID { get; set; }
@@ -41,9 +45,15 @@ namespace HTA.Models
         public bool? Is_Mailing { get; set; }
         public bool? Is_Emailing { get; set; }
         public bool? Is_ProfileComplete { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? Last_Modified { get; set; }
         public string Who_Modified { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? Date_Created { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? Last_LoggedIn { get; set; }
 
     }

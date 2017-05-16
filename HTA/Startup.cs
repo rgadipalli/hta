@@ -29,15 +29,8 @@ namespace HTA
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //String strConnection = "LAPTOP-SCM7VB8J\\SQLEXPRESS;Initial Catalog=db535610422;Integrated Security=True";
-            String strConnection = "Server=LAPTOP-SCM7VB8J\\SQLEXPRESS;Database=db535610422;Integrated Security=SSPI;Trusted_Connection=True;MultipleActiveResultSets=true";
-            //string strConnection = "Data Source=LAPTOP-SCM7VB8J\\SQLEXPRESS;Initial Catalog=db535610422;Integrated Security=True";
-            //services.AddDbContext<HTAContext>(options =>
-            //        options.UseSqlServer(Configuration.GetConnectionString("HTAContext")));
-
             services.AddDbContext<HTAContext>(options =>
-                    options.UseSqlServer(strConnection));
-
+                    options.UseSqlServer(Configuration.GetConnectionString("HTAContext")));
             // Add framework services.
             services.AddMvc();
 
