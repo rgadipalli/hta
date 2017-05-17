@@ -8,9 +8,10 @@ using HTA.Models;
 namespace HTA.Migrations
 {
     [DbContext(typeof(HTAContext))]
-    partial class HTAContextModelSnapshot : ModelSnapshot
+    [Migration("20170517021702_BookingService")]
+    partial class BookingService
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasDefaultSchema("dbo")

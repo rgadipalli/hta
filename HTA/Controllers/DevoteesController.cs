@@ -21,7 +21,7 @@ namespace HTA.Controllers
         // GET: Devotees
         public async Task<IActionResult> Index(string currentFilter, string searchString, int? page)
         {
-            var devotees = from m in _context.Devotee
+            var devotees = from m in _context.Devotees
                          select m;
             if (searchString != null)
             {
@@ -50,7 +50,7 @@ namespace HTA.Controllers
                 return NotFound();
             }
 
-            var devotee = await _context.Devotee
+            var devotee = await _context.Devotees
                 .SingleOrDefaultAsync(m => m.Devotee_ID == id);
             if (devotee == null)
             {
@@ -90,7 +90,7 @@ namespace HTA.Controllers
                 return NotFound();
             }
 
-            var devotee = await _context.Devotee.SingleOrDefaultAsync(m => m.Devotee_ID == id);
+            var devotee = await _context.Devotees.SingleOrDefaultAsync(m => m.Devotee_ID == id);
             if (devotee == null)
             {
                 return NotFound();
@@ -141,7 +141,7 @@ namespace HTA.Controllers
                 return NotFound();
             }
 
-            var devotee = await _context.Devotee
+            var devotee = await _context.Devotees
                 .SingleOrDefaultAsync(m => m.Devotee_ID == id);
             if (devotee == null)
             {
@@ -156,15 +156,15 @@ namespace HTA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var devotee = await _context.Devotee.SingleOrDefaultAsync(m => m.Devotee_ID == id);
-            _context.Devotee.Remove(devotee);
+            var devotee = await _context.Devotees.SingleOrDefaultAsync(m => m.Devotee_ID == id);
+            _context.Devotees.Remove(devotee);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
         private bool DevoteeExists(int id)
         {
-            return _context.Devotee.Any(e => e.Devotee_ID == id);
+            return _context.Devotees.Any(e => e.Devotee_ID == id);
         }
     }
 }

@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace HTA.Models
 {
-    [Table("tbl_devotee", Schema="dbo")]
     public class Devotee
     {
         [Key]
