@@ -9,7 +9,9 @@ namespace HTA.Models
     {
 
         public int BookingItemId { get; set; }
+        public int Booking_Id { get; set; }
         public Booking Booking { get; set; }
+        public int Service_Id { get; set; }
         public Service Service { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]

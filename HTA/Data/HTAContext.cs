@@ -29,6 +29,11 @@ namespace HTA.Models
             modelBuilder.Entity<Booking>().ToTable("tbl_booking");
             modelBuilder.Entity<BookingItem>().ToTable("tbl_bookingitem");
 
+            modelBuilder.Entity<Devotee>()
+                .HasOne(e => e.HeadDevotee)
+                .WithMany()
+                .HasForeignKey(m => m.Head_Devotee_ID);
+
             //modelBuilder.Entity<BookingItem>()
             //    .HasKey(c => new { c.Service.Service_ID, c.Booking.BookingID });
         }

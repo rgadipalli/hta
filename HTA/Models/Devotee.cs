@@ -12,6 +12,8 @@ namespace HTA.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Devotee_ID { get; set; }
+        public int? Head_Devotee_ID { get; set; }
+        public Devotee HeadDevotee { get; set; }
         public string LoginEmail { get; set; }
         public string Password { get; set; }
         public bool? TemporaryPassord { get; set; }

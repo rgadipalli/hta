@@ -12,7 +12,9 @@ namespace HTA.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BookingID { get; set; }
-        public int? DevoteeMemID { get; set; }
+        public int DevoteeId { get; set; }
+        public int ServiceForDevoteeId { get; set; }
+        public Devotee Devotee { get; set; }
         public bool? IsApproved { get; set; }
         public bool? IsPaid { get; set; }
         [DataType(DataType.Date)]
@@ -28,9 +30,7 @@ namespace HTA.Models
         public string LastModifiedBy { get; set; }
         public bool? IsActive { get; set; }
         public int? ReceiptId { get; set; }
-
-        public int? DevoteeId { get; set; }
-        public Devotee Devotee { get; set; }
+        
 
         public ICollection<BookingItem> BookingItem { get; set; }
 
