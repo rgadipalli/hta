@@ -1,0 +1,89 @@
+@model HTA.Models.Booking
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Booking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="BookingID" />
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceForDevoteeId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ServiceForDevoteeId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsApproved)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsApproved)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPaid)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsPaid)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ApprovedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApprovedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ApprovedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApprovedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastModified)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastModified)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastModifiedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastModifiedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceiptId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReceiptId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Devotee)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Devotee.Devotee_ID)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

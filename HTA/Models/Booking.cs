@@ -13,6 +13,7 @@ namespace HTA.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BookingID { get; set; }
         public int DevoteeId { get; set; }
+        [Column("DevoteeMemID")]
         public int ServiceForDevoteeId { get; set; }
         public Devotee Devotee { get; set; }
         public bool? IsApproved { get; set; }
