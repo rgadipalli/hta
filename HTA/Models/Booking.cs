@@ -33,7 +33,7 @@ namespace HTA.Models
         public int? ReceiptId { get; set; }
         
 
-        public ICollection<BookingItem> BookingItem { get; set; }
+        public ICollection<BookingItem> BookingItems { get; set; }
 
     }
 }

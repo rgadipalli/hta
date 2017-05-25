@@ -34,9 +34,8 @@ namespace HTA.Models
         public string ToEmailAddress { get; set; }
         public string EmailSubject { get; set; }
 
-        public int? ServiceGroup_ID { get; set; }
-        public ServiceGroup serviceGroup { get; set; }
-
+        public int? ServiceGroup_id { get; set; }
+        public ServiceGroup ServiceGroup { get; set; }
         public ICollection<BookingItem> BookingItem { get; set; }
 
     }

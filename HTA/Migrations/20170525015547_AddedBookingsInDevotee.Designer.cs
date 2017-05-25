@@ -8,9 +8,10 @@ using HTA.Models;
 namespace HTA.Migrations
 {
     [DbContext(typeof(HTAContext))]
-    partial class HTAContextModelSnapshot : ModelSnapshot
+    [Migration("20170525015547_AddedBookingsInDevotee")]
+    partial class AddedBookingsInDevotee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasDefaultSchema("dbo")
@@ -271,7 +272,7 @@ namespace HTA.Migrations
 
             modelBuilder.Entity("HTA.Models.Service", b =>
                 {
-                    b.HasOne("HTA.Models.ServiceGroup", "ServiceGroup")
+                    b.HasOne("HTA.Models.ServiceGroup", "serviceGroup")
                         .WithMany()
                         .HasForeignKey("ServiceGroup_ID");
                 });

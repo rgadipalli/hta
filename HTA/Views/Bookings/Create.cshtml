@@ -12,16 +12,15 @@
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="DevoteeId" class="col-md-2 control-label"></label>
+            <label asp-for="DevoteeId" class="col-md-2 control-label">Devotee Name</label>
             <div class="col-md-10">
-                <select asp-for="DevoteeId" class ="form-control" asp-items="ViewBag.DevoteeId"></select>
+                <select asp-for="DevoteeId" class="form-control" asp-items="ViewBag.DevoteeNames"></select>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="ServiceForDevoteeId" class="col-md-2 control-label"></label>
+            <label asp-for="ServiceForDevoteeId" class="col-md-2 control-label">Service For Devotee</label>
             <div class="col-md-10">
-                <input asp-for="ServiceForDevoteeId" class="form-control" />
-                <span asp-validation-for="ServiceForDevoteeId" class="text-danger"></span>
+                <select asp-for="ServiceForDevoteeId" class="form-control" asp-items="ViewBag.DevoteeNames"></select>
             </div>
         </div>
         <div class="form-group">

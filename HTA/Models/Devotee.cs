@@ -57,5 +57,7 @@ namespace HTA.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? Last_LoggedIn { get; set; }
 
+        public List<Booking> Bookings { get; set; }
+
     }
 }

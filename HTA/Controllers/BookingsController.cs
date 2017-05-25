@@ -48,6 +48,7 @@ namespace HTA.Controllers
         public IActionResult Create()
         {
             ViewData["DevoteeId"] = new SelectList(_context.Devotees, "Devotee_ID", "Devotee_ID");
+            ViewBag.DevoteeNames = new SelectList(_context.Devotees, "Devotee_ID", "First_Name");
             return View();
         }
 

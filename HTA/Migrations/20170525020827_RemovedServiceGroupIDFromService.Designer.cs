@@ -8,9 +8,10 @@ using HTA.Models;
 namespace HTA.Migrations
 {
     [DbContext(typeof(HTAContext))]
-    partial class HTAContextModelSnapshot : ModelSnapshot
+    [Migration("20170525020827_RemovedServiceGroupIDFromService")]
+    partial class RemovedServiceGroupIDFromService
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasDefaultSchema("dbo")
