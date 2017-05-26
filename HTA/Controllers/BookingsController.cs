@@ -48,7 +48,13 @@ namespace HTA.Controllers
         public IActionResult Create()
         {
             ViewData["DevoteeId"] = new SelectList(_context.Devotees, "Devotee_ID", "Devotee_ID");
-            ViewBag.DevoteeNames = new SelectList(_context.Devotees, "Devotee_ID", "First_Name");
+            var DevoteeList = _context.Devotees.Where(d => d.Is_Active == true).OrderBy(d => d.First_Name).Select(d => new
+            {
+                Devotee_ID = d.Devotee_ID,
+                First_Name = string.Format("{0} {1}", d.First_Name, d.Last_Name)
+            }).ToList();
+            DevoteeList.Insert(0, new { Devotee_ID= 0, First_Name="--Select Devotee--" });
+            ViewBag.DevoteeNames = new SelectList(DevoteeList, "Devotee_ID", "First_Name");
             return View();
         }
 
@@ -59,6 +65,10 @@ namespace HTA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BookingID,DevoteeId,ServiceForDevoteeId,IsApproved,IsPaid,ApprovedDate,ApprovedBy,DateCreated,LastModified,LastModifiedBy,IsActive,ReceiptId")] Booking booking)
         {
+            booking.DateCreated = DateTime.Now;
+            booking.ApprovedBy = "Rajitha";
+            booking.LastModified = DateTime.Now;
+            booking.LastModifiedBy = "Rajitha";
             if (ModelState.IsValid)
             {
                 _context.Add(booking);

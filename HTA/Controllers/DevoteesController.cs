@@ -172,5 +172,11 @@ namespace HTA.Controllers
         {
             return _context.Devotees.Any(e => e.Devotee_ID == id);
         }
+
+        public ActionResult FillServiceMemberList(int devoteeId)
+        {
+            var devotees = _context.Devotees.Where(d => d.Head_Devotee_ID == devoteeId);
+            return Json(devotees);
+        }
     }
 }

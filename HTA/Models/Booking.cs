@@ -16,20 +16,16 @@ namespace HTA.Models
         [Column("DevoteeMemID")]
         public int ServiceForDevoteeId { get; set; }
         public Devotee Devotee { get; set; }
-        public bool? IsApproved { get; set; }
-        public bool? IsPaid { get; set; }
+        public bool IsApproved { get; set; }
+        public bool IsPaid { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(ApplyFormatInEditMode = true)]
         public DateTime? ApprovedDate { get; set; }
         public string ApprovedBy { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime? DateCreated { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime? LastModified { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime LastModified { get; set; }
         public string LastModifiedBy { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
         public int? ReceiptId { get; set; }
         
 
