@@ -1,0 +1,99 @@
+@model HTA.Models.BookingItem
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>BookingItem</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="BookingItemId" />
+        <div class="form-group">
+            <label asp-for="Booking_Id" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Booking_Id" class="form-control" />
+                <span asp-validation-for="Booking_Id" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Service_Id" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="Service_Id" class="form-control" asp-items="ViewBag.Service_Id"></select>
+                <span asp-validation-for="Service_Id" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ServiceDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ServiceDate" class="form-control" />
+                <span asp-validation-for="ServiceDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ServiceTimeID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ServiceTimeID" class="form-control" />
+                <span asp-validation-for="ServiceTimeID" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PriestI" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PriestI" class="form-control" />
+                <span asp-validation-for="PriestI" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PriestII" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PriestII" class="form-control" />
+                <span asp-validation-for="PriestII" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PriestIII" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PriestIII" class="form-control" />
+                <span asp-validation-for="PriestIII" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PriestAlloted" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PriestAlloted" class="form-control" />
+                <span asp-validation-for="PriestAlloted" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="NoUnits" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="NoUnits" class="form-control" />
+                <span asp-validation-for="NoUnits" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Service_Fee" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Service_Fee" class="form-control" />
+                <span asp-validation-for="Service_Fee" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

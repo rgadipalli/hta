@@ -1,0 +1,83 @@
+@model HTA.Models.BookingItem
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BookingItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="BookingItemId" />
+        <dt>
+            @Html.DisplayNameFor(model => model.Booking_Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Booking_Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ServiceDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceTimeID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ServiceTimeID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PriestI)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PriestI)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PriestII)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PriestII)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PriestIII)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PriestIII)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PriestAlloted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PriestAlloted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NoUnits)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NoUnits)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Service_Fee)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Service_Fee)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Service)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Service.Service_ID)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

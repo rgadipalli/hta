@@ -27,8 +27,10 @@ namespace HTA.Models
         public string LastModifiedBy { get; set; }
         public bool IsActive { get; set; }
         public int? ReceiptId { get; set; }
-        
 
+        //public virtual ServiceGroup ServiceGroup { get; set; }
+        //public virtual Service Service { get; set; }
+        
         public ICollection<BookingItem> BookingItems { get; set; }
 
     }

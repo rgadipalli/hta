@@ -55,6 +55,8 @@ namespace HTA.Controllers
             }).ToList();
             DevoteeList.Insert(0, new { Devotee_ID= 0, First_Name="--Select Devotee--" });
             ViewBag.DevoteeNames = new SelectList(DevoteeList, "Devotee_ID", "First_Name");
+            ViewBag.ServiceGroupId = new SelectList(_context.ServiceGroups, "ServiceGroup_ID", "ServiceGroup_Name");
+            ViewBag.ServiceId = new SelectList(_context.Services, "Service_ID", "Service_Desc");
             return View();
         }
 
@@ -72,6 +74,20 @@ namespace HTA.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(booking);
+                await _context.SaveChangesAsync();
+                BookingItem bookingItem = new BookingItem();
+                bookingItem.BookingId = booking.BookingID;
+                bookingItem.ServiceID = 6078;
+                bookingItem.PriestAlloted = 1;
+                bookingItem.PriestI = 1;
+                bookingItem.PriestII = 7;
+                bookingItem.PriestIII = 10;
+                bookingItem.ServiceDate = DateTime.Now.Date;
+                bookingItem.ServiceTimeID = 17;
+                bookingItem.NoUnits = 1;
+                bookingItem.Service_Fee = 51;
+                _context.Add(bookingItem);
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
