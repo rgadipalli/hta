@@ -15,22 +15,27 @@ namespace HTA.Models
         public int DevoteeId { get; set; }
         [Column("DevoteeMemID")]
         public int ServiceForDevoteeId { get; set; }
-        public Devotee Devotee { get; set; }
-        public bool IsApproved { get; set; }
-        public bool IsPaid { get; set; }
+        public bool? IsApproved { get; set; }
+        public bool? IsPaid { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true)]
         public DateTime? ApprovedDate { get; set; }
         public string ApprovedBy { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true)]
         public DateTime DateCreated { get; set; }
-        public DateTime LastModified { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true)]
+        public DateTime? LastModified { get; set; }
         public string LastModifiedBy { get; set; }
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
         public int? ReceiptId { get; set; }
 
         //public virtual ServiceGroup ServiceGroup { get; set; }
         //public virtual Service Service { get; set; }
-        
+
+        public virtual Devotee Devotee { get; set; }
+
         public ICollection<BookingItem> BookingItems { get; set; }
 
     }

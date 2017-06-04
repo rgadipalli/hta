@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using HTA.ViewModels;
 
 namespace HTA.Models
 {
@@ -37,5 +38,7 @@ namespace HTA.Models
             //modelBuilder.Entity<BookingItem>()
             //    .HasKey(c => new { c.Service.Service_ID, c.Booking.BookingID });
         }
+        
+        
     }
 }

@@ -1,15 +1,26 @@
-﻿using System;
+﻿using HTA.Models;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
-
-namespace HTA.Models
+namespace HTA.ViewModels
 {
-    public class BookingItem
+    [NotMapped]
+    public class BookingVM
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
 
-        public int BookingItemId { get; set; }
-        public int BookingId { get; set; }
+        public int DevoteeId { get; set; }
+        [Column("DevoteeMemID")]
+        public int ServiceForDevoteeId { get; set; }
+
+        public virtual Devotee Devotee { get; set; }
+
         public int ServiceID { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
@@ -23,8 +34,6 @@ namespace HTA.Models
         [Column(TypeName = "money")]
         public decimal Service_Fee { get; set; }
 
-        public virtual Booking Booking { get; set; }
         public virtual Service Service { get; set; }
-
     }
 }

@@ -67,8 +67,10 @@ namespace HTA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BookingID,DevoteeId,ServiceForDevoteeId,IsApproved,IsPaid,ApprovedDate,ApprovedBy,DateCreated,LastModified,LastModifiedBy,IsActive,ReceiptId")] Booking booking)
         {
+            booking.IsApproved = true;
+            booking.IsPaid = false;
+            booking.IsActive = true;
             booking.DateCreated = DateTime.Now;
-            booking.ApprovedBy = "Rajitha";
             booking.LastModified = DateTime.Now;
             booking.LastModifiedBy = "Rajitha";
             if (ModelState.IsValid)

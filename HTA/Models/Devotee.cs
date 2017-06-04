@@ -42,7 +42,7 @@ namespace HTA.Models
         public int? MemberType_ID { get; set; }
         public int? Gothram_ID { get; set; }
         public int? Star_ID { get; set; }
-        public bool Is_Active { get; set; }
+        public bool? Is_Active { get; set; }
         public bool? Is_Mailing { get; set; }
         public bool? Is_Emailing { get; set; }
         public bool? Is_ProfileComplete { get; set; }
