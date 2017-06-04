@@ -1,0 +1,202 @@
+@model HTA.ViewModels.BookingVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script>
+    function FillServiceMemberList() {
+        var id = $('#DevoteeId').val();
+        $.ajax({
+            url: '/Devotees/FillServiceMemberList',
+            type: "GET",
+            dataType: "JSON",
+            data: { devoteeId: id },
+            success: function (devotees) {
+                $("#ServiceForDevoteeId").html(""); // clear before appending new list
+                $("#ServiceForDevoteeId").append(
+                    $('<option></option>').val(0).html('-- Select Devote Member --'));
+                $.each(devotees, function (i, devotee) {
+                    $("#ServiceForDevoteeId").append(
+                        $('<option></option>').val(devotee.devotee_ID).html(devotee.first_Name + ' ' + devotee.last_Name));
+                });
+            }
+        });
+    }
+
+    function FillServicesList() {
+        var id = $('#ServiceGroupID').val();
+        $.ajax({
+            url: '/DevoteeBookings/FillServicesList',
+            type: "GET",
+            dataType: "JSON",
+            data: { serviceGroupId: id },
+            success: function (services) {
+                $("#ServiceID").html(""); // clear before appending new list
+                $("#ServiceID").append(
+                    $('<option></option>').val(0).html('-- Select Service --'));
+                $.each(services, function (i, service) {
+                    $("#ServiceID").append(
+                        $('<option></option>').val(service.service_ID).html(service.service_Desc));
+                });
+            }
+        });
+    }
+
+        function GetServiceFee() {
+            var id = $('#ServiceID').val();
+            $.ajax({
+                url: '/DevoteeBookings/GetServiceFee',
+                type: "GET",
+                dataType: "JSON",
+                data: { serviceId: id },
+                success: function (service) {
+                    $("#HdnServiceFee").html(""); 
+                    $("#HdnServiceFee").val(service[0].fee);
+                }
+            });
+    }
+
+        function CalculateServiceFee() {
+            var noUnits = $('#NoUnits').val();
+            var serviceFee = $('#HdnServiceFee').val();
+            $("#Service_Fee").val(parseFloat(serviceFee) * parseFloat(noUnits));
+        }
+</script>
+
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>BookingVM</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="DevoteeId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="DevoteeId" class ="form-control" asp-items="ViewBag.DevoteeNames"  onchange="FillServiceMemberList()"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ServiceForDevoteeId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="ServiceForDevoteeId" class="form-control"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ServiceGroupID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="ServiceGroupID" class="form-control" asp-items="ViewBag.ServiceGroupId"  onchange="FillServicesList()"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ServiceID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="ServiceID" class ="form-control"  onchange="GetServiceFee()"></select>
+                <input type="hidden" id="HdnServiceFee" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ServiceDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input type="datetime" asp-for="ServiceDate" class="form-control" value="@DateTime.Now.ToString("d")" />
+                <span asp-validation-for="ServiceDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ServiceTimeID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                @*<input asp-for="ServiceTimeID" class="form-control" />*@
+                @*@(Html.Kendo().TimePicker()
+                .Name("ServiceTimeID")
+                .Value("10:00 AM")
+                .HtmlAttributes(new { style = "width: 100%", title = "timepicker" })
+                )*@
+                @*@Html.BootstrapTimePickerFor(model => model.ServiceTimeID)*@
+                <select asp-for="ServiceTimeID" class ="form-control">
+                    <option value="0">12:00 AM</option>
+                    <option value="1">1:00 AM</option>
+                    <option value="2">2:00 AM</option>
+                    <option value="3">3:00 AM</option>
+                    <option value="4">4:00 AM</option>
+                    <option value="5">5:00 AM</option>
+                    <option value="6">6:00 AM</option>
+                    <option value="7">7:00 AM</option>
+                    <option value="8">8:00 AM</option>
+                    <option selected="selected" value="9">9:00 AM</option>
+                    <option value="10">10:00 AM</option>
+                    <option value="11">11:00 AM</option>
+                    <option value="12">12:00 PM</option>
+                    <option value="13">1:00 PM</option>
+                    <option value="14">2:00 PM</option>
+                    <option value="15">3:00 PM</option>
+                    <option value="16">4:00 PM</option>
+                    <option value="17">5:00 PM</option>
+                    <option value="18">6:00 PM</option>
+                    <option value="19">7:00 PM</option>
+                    <option value="20">8:00 PM</option>
+                    <option value="21">9:00 PM</option>
+                    <option value="22">10:00 PM</option>
+                    <option value="23">11:00 PM</option>
+                </select>
+                <span asp-validation-for="ServiceTimeID" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PriestI" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PriestI" class="form-control" />
+                <span asp-validation-for="PriestI" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PriestII" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PriestII" class="form-control" />
+                <span asp-validation-for="PriestII" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PriestIII" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PriestIII" class="form-control" />
+                <span asp-validation-for="PriestIII" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PriestAlloted" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PriestAlloted" class="form-control" />
+                <span asp-validation-for="PriestAlloted" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="NoUnits" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="NoUnits" class="form-control"  onchange="CalculateServiceFee()" />
+                <span asp-validation-for="NoUnits" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Service_Fee" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Service_Fee" class="form-control" />
+                <span asp-validation-for="Service_Fee" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

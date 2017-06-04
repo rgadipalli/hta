@@ -85,7 +85,7 @@ namespace HTA.Controllers
                 bookingItem.PriestII = 7;
                 bookingItem.PriestIII = 10;
                 bookingItem.ServiceDate = DateTime.Now.Date;
-                bookingItem.ServiceTimeID = 17;
+                bookingItem.ServiceTimeID = Convert.ToInt16(DateTime.Now.TimeOfDay.Hours);
                 bookingItem.NoUnits = 1;
                 bookingItem.Service_Fee = 51;
                 _context.Add(bookingItem);

@@ -8,8 +8,8 @@ using HTA.Models;
 namespace HTA.Migrations
 {
     [DbContext(typeof(HTAContext))]
-    [Migration("20170519031858_AddedHeadDevotee")]
-    partial class AddedHeadDevotee
+    [Migration("20170604215318_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,9 +27,9 @@ namespace HTA.Migrations
 
                     b.Property<DateTime?>("ApprovedDate");
 
-                    b.Property<DateTime?>("DateCreated");
+                    b.Property<DateTime>("DateCreated");
 
-                    b.Property<int?>("DevoteeId");
+                    b.Property<int>("DevoteeId");
 
                     b.Property<bool?>("IsActive");
 
@@ -43,6 +43,9 @@ namespace HTA.Migrations
 
                     b.Property<int?>("ReceiptId");
 
+                    b.Property<int>("ServiceForDevoteeId")
+                        .HasColumnName("DevoteeMemID");
+
                     b.HasKey("BookingID");
 
                     b.HasIndex("DevoteeId");
@@ -55,7 +58,7 @@ namespace HTA.Migrations
                     b.Property<int>("BookingItemId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("BookingID");
+                    b.Property<int>("BookingId");
 
                     b.Property<int?>("NoUnits");
 
@@ -69,18 +72,18 @@ namespace HTA.Migrations
 
                     b.Property<DateTime>("ServiceDate");
 
-                    b.Property<int?>("ServiceTimeID");
+                    b.Property<int>("ServiceID");
+
+                    b.Property<DateTime>("ServiceTimeID");
 
                     b.Property<decimal>("Service_Fee")
                         .HasColumnType("money");
 
-                    b.Property<int?>("Service_ID");
-
                     b.HasKey("BookingItemId");
 
-                    b.HasIndex("BookingID");
+                    b.HasIndex("BookingId");
 
-                    b.HasIndex("Service_ID");
+                    b.HasIndex("ServiceID");
 
                     b.ToTable("tbl_bookingitem");
                 });
@@ -176,7 +179,7 @@ namespace HTA.Migrations
 
                     b.Property<string>("EmailSubject");
 
-                    b.Property<double>("Fee")
+                    b.Property<decimal>("Fee")
                         .HasColumnType("money");
 
                     b.Property<bool?>("Is_Active");
@@ -195,7 +198,7 @@ namespace HTA.Migrations
 
                     b.Property<string>("Notes");
 
-                    b.Property<int?>("ServiceGroup_ID");
+                    b.Property<int?>("ServiceGroup_id");
 
                     b.Property<string>("Service_Desc");
 
@@ -205,7 +208,7 @@ namespace HTA.Migrations
 
                     b.HasKey("Service_ID");
 
-                    b.HasIndex("ServiceGroup_ID");
+                    b.HasIndex("ServiceGroup_id");
 
                     b.ToTable("tbl_service");
                 });
@@ -233,19 +236,22 @@ namespace HTA.Migrations
             modelBuilder.Entity("HTA.Models.Booking", b =>
                 {
                     b.HasOne("HTA.Models.Devotee", "Devotee")
-                        .WithMany()
-                        .HasForeignKey("DevoteeId");
+                        .WithMany("Bookings")
+                        .HasForeignKey("DevoteeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("HTA.Models.BookingItem", b =>
                 {
                     b.HasOne("HTA.Models.Booking", "Booking")
-                        .WithMany("BookingItem")
-                        .HasForeignKey("BookingID");
+                        .WithMany("BookingItems")
+                        .HasForeignKey("BookingId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("HTA.Models.Service", "Service")
-                        .WithMany("BookingItem")
-                        .HasForeignKey("Service_ID");
+                        .WithMany()
+                        .HasForeignKey("ServiceID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("HTA.Models.Devotee", b =>
@@ -257,9 +263,9 @@ namespace HTA.Migrations
 
             modelBuilder.Entity("HTA.Models.Service", b =>
                 {
-                    b.HasOne("HTA.Models.ServiceGroup", "serviceGroup")
+                    b.HasOne("HTA.Models.ServiceGroup", "ServiceGroup")
                         .WithMany("Services")
-                        .HasForeignKey("ServiceGroup_ID");
+                        .HasForeignKey("ServiceGroup_id");
                 });
         }
     }

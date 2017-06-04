@@ -16,7 +16,7 @@ namespace HTA.Models
 
         public DbSet<HTA.Models.Devotee> Devotees { get; set; }
         public DbSet<HTA.Models.ServiceGroup> ServiceGroups { get; set; }
-        public DbSet<HTA.Models.Booking> Services { get; set; }
+        public DbSet<HTA.Models.Service> Services { get; set; }
         public DbSet<HTA.Models.Booking> Bookings { get; set; }
         public DbSet<HTA.Models.BookingItem> BookingItems { get; set; }
 
@@ -25,7 +25,7 @@ namespace HTA.Models
             modelBuilder.HasDefaultSchema("dbo");
 
             modelBuilder.Entity<ServiceGroup>().ToTable("tbl_servicegroup");
-            modelBuilder.Entity<Booking>().ToTable("tbl_service");
+            modelBuilder.Entity<Service>().ToTable("tbl_service");
             modelBuilder.Entity<Devotee>().ToTable("tbl_devotee");
             modelBuilder.Entity<Booking>().ToTable("tbl_booking");
             modelBuilder.Entity<BookingItem>().ToTable("tbl_bookingitem");

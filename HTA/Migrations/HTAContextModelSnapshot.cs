@@ -26,7 +26,7 @@ namespace HTA.Migrations
 
                     b.Property<DateTime?>("ApprovedDate");
 
-                    b.Property<DateTime?>("DateCreated");
+                    b.Property<DateTime>("DateCreated");
 
                     b.Property<int>("DevoteeId");
 
@@ -45,13 +45,9 @@ namespace HTA.Migrations
                     b.Property<int>("ServiceForDevoteeId")
                         .HasColumnName("DevoteeMemID");
 
-                    b.Property<int?>("ServiceGroup_ID");
-
                     b.HasKey("BookingID");
 
                     b.HasIndex("DevoteeId");
-
-                    b.HasIndex("ServiceGroup_ID");
 
                     b.ToTable("tbl_booking");
                 });
@@ -61,9 +57,7 @@ namespace HTA.Migrations
                     b.Property<int>("BookingItemId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("BookingID");
-
-                    b.Property<int>("Booking_Id");
+                    b.Property<int>("BookingId");
 
                     b.Property<int?>("NoUnits");
 
@@ -77,18 +71,18 @@ namespace HTA.Migrations
 
                     b.Property<DateTime>("ServiceDate");
 
-                    b.Property<int?>("ServiceTimeID");
+                    b.Property<int>("ServiceID");
+
+                    b.Property<DateTime>("ServiceTimeID");
 
                     b.Property<decimal>("Service_Fee")
                         .HasColumnType("money");
 
-                    b.Property<int>("Service_Id");
-
                     b.HasKey("BookingItemId");
 
-                    b.HasIndex("BookingID");
+                    b.HasIndex("BookingId");
 
-                    b.HasIndex("Service_Id");
+                    b.HasIndex("ServiceID");
 
                     b.ToTable("tbl_bookingitem");
                 });
@@ -184,7 +178,7 @@ namespace HTA.Migrations
 
                     b.Property<string>("EmailSubject");
 
-                    b.Property<double>("Fee")
+                    b.Property<decimal>("Fee")
                         .HasColumnType("money");
 
                     b.Property<bool?>("Is_Active");
@@ -203,7 +197,7 @@ namespace HTA.Migrations
 
                     b.Property<string>("Notes");
 
-                    b.Property<int?>("ServiceGroup_ID");
+                    b.Property<int?>("ServiceGroup_id");
 
                     b.Property<string>("Service_Desc");
 
@@ -213,9 +207,9 @@ namespace HTA.Migrations
 
                     b.HasKey("Service_ID");
 
-                    b.HasIndex("ServiceGroup_ID");
+                    b.HasIndex("ServiceGroup_id");
 
-                    b.ToTable("Service");
+                    b.ToTable("tbl_service");
                 });
 
             modelBuilder.Entity("HTA.Models.ServiceGroup", b =>
@@ -244,21 +238,18 @@ namespace HTA.Migrations
                         .WithMany("Bookings")
                         .HasForeignKey("DevoteeId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("HTA.Models.ServiceGroup")
-                        .WithMany("Services")
-                        .HasForeignKey("ServiceGroup_ID");
                 });
 
             modelBuilder.Entity("HTA.Models.BookingItem", b =>
                 {
                     b.HasOne("HTA.Models.Booking", "Booking")
                         .WithMany("BookingItems")
-                        .HasForeignKey("BookingID");
+                        .HasForeignKey("BookingId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("HTA.Models.Service", "Service")
-                        .WithMany("BookingItem")
-                        .HasForeignKey("Service_Id")
+                        .WithMany()
+                        .HasForeignKey("ServiceID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -272,8 +263,8 @@ namespace HTA.Migrations
             modelBuilder.Entity("HTA.Models.Service", b =>
                 {
                     b.HasOne("HTA.Models.ServiceGroup", "ServiceGroup")
-                        .WithMany()
-                        .HasForeignKey("ServiceGroup_ID");
+                        .WithMany("Services")
+                        .HasForeignKey("ServiceGroup_id");
                 });
         }
     }

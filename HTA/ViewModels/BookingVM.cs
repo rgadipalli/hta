@@ -18,9 +18,6 @@ namespace HTA.ViewModels
         public int DevoteeId { get; set; }
         [Column("DevoteeMemID")]
         public int ServiceForDevoteeId { get; set; }
-
-        public virtual Devotee Devotee { get; set; }
-
         public int ServiceID { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
@@ -34,6 +31,9 @@ namespace HTA.ViewModels
         [Column(TypeName = "money")]
         public decimal Service_Fee { get; set; }
 
+        public virtual Devotee Devotee { get; set; }
+        public virtual int ServiceGroupID { get; set; }
+        public virtual ServiceGroup ServiceGroup { get; set; }
         public virtual Service Service { get; set; }
     }
 }

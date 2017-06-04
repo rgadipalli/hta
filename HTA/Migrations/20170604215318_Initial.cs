@@ -15,7 +15,23 @@ namespace HTA.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "tbl_bookingitem",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "tbl_booking",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "tbl_service",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
                 name: "tbl_devotee",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "tbl_servicegroup",
                 schema: "dbo");
         }
     }

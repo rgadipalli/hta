@@ -14,7 +14,7 @@ namespace HTA.Models
         public int Service_ID { get; set; }
         public string Service_Desc { get; set; }
         [Column(TypeName = "money")]
-        public double Fee { get; set; }
+        public decimal Fee { get; set; }
         public bool? Is_Outside { get; set; }
         public bool? Is_Web_Avail { get; set; }
         public bool? Is_Quick { get; set; }
@@ -36,7 +36,6 @@ namespace HTA.Models
 
         public int? ServiceGroup_id { get; set; }
         public ServiceGroup ServiceGroup { get; set; }
-        public ICollection<BookingItem> BookingItem { get; set; }
 
     }
 }
