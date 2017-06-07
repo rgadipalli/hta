@@ -12,8 +12,6 @@ namespace HTA.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Devotee_ID { get; set; }
-        public int? Head_Devotee_ID { get; set; }
-        public Devotee HeadDevotee { get; set; }
         public string LoginEmail { get; set; }
         public string Password { get; set; }
         public bool? TemporaryPassord { get; set; }
@@ -46,17 +44,18 @@ namespace HTA.Models
         public bool? Is_Mailing { get; set; }
         public bool? Is_Emailing { get; set; }
         public bool? Is_ProfileComplete { get; set; }
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? Last_Modified { get; set; }
         public string Who_Modified { get; set; }
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? Date_Created { get; set; }
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? Last_LoggedIn { get; set; }
 
+        public List<DevoteeMember> DevoteeMembers { get; set; }
         public List<Booking> Bookings { get; set; }
 
     }

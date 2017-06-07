@@ -15,6 +15,7 @@ namespace HTA.Models
         }
 
         public DbSet<HTA.Models.Devotee> Devotees { get; set; }
+        public DbSet<HTA.Models.DevoteeMember> DevoteeMembers { get; set; }
         public DbSet<HTA.Models.ServiceGroup> ServiceGroups { get; set; }
         public DbSet<HTA.Models.Service> Services { get; set; }
         public DbSet<HTA.Models.Booking> Bookings { get; set; }
@@ -27,16 +28,10 @@ namespace HTA.Models
             modelBuilder.Entity<ServiceGroup>().ToTable("tbl_servicegroup");
             modelBuilder.Entity<Service>().ToTable("tbl_service");
             modelBuilder.Entity<Devotee>().ToTable("tbl_devotee");
+            modelBuilder.Entity<DevoteeMember>().ToTable("tbl_Devotee_Member");
             modelBuilder.Entity<Booking>().ToTable("tbl_booking");
             modelBuilder.Entity<BookingItem>().ToTable("tbl_bookingitem");
-
-            modelBuilder.Entity<Devotee>()
-                .HasOne(e => e.HeadDevotee)
-                .WithMany()
-                .HasForeignKey(m => m.Head_Devotee_ID);
-
-            //modelBuilder.Entity<BookingItem>()
-            //    .HasKey(c => new { c.Service.Service_ID, c.Booking.BookingID });
+            
         }
         
         

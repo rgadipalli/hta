@@ -73,7 +73,7 @@ namespace HTA.Migrations
 
                     b.Property<int>("ServiceID");
 
-                    b.Property<DateTime>("ServiceTimeID");
+                    b.Property<int?>("ServiceTimeID");
 
                     b.Property<decimal>("Service_Fee")
                         .HasColumnType("money");
@@ -111,8 +111,6 @@ namespace HTA.Migrations
                     b.Property<string>("First_Name");
 
                     b.Property<int?>("Gothram_ID");
-
-                    b.Property<int?>("Head_Devotee_ID");
 
                     b.Property<string>("Home_Phone");
 
@@ -160,9 +158,45 @@ namespace HTA.Migrations
 
                     b.HasKey("Devotee_ID");
 
-                    b.HasIndex("Head_Devotee_ID");
-
                     b.ToTable("tbl_devotee");
+                });
+
+            modelBuilder.Entity("HTA.Models.DevoteeMember", b =>
+                {
+                    b.Property<int>("DevMem_ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CellPhone");
+
+                    b.Property<DateTime>("DOB");
+
+                    b.Property<DateTime>("Date_Created");
+
+                    b.Property<int>("Devotee_ID");
+
+                    b.Property<string>("First_Name");
+
+                    b.Property<int>("Gothram_ID");
+
+                    b.Property<bool?>("Is_Active");
+
+                    b.Property<DateTime>("Last_Modified");
+
+                    b.Property<string>("Last_Name");
+
+                    b.Property<string>("Middle_Name");
+
+                    b.Property<string>("Sex");
+
+                    b.Property<int>("Star_ID");
+
+                    b.Property<string>("Who_Modified");
+
+                    b.HasKey("DevMem_ID");
+
+                    b.HasIndex("Devotee_ID");
+
+                    b.ToTable("tbl_Devotee_Member");
                 });
 
             modelBuilder.Entity("HTA.Models.Service", b =>
@@ -253,11 +287,12 @@ namespace HTA.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("HTA.Models.Devotee", b =>
+            modelBuilder.Entity("HTA.Models.DevoteeMember", b =>
                 {
-                    b.HasOne("HTA.Models.Devotee", "HeadDevotee")
-                        .WithMany()
-                        .HasForeignKey("Head_Devotee_ID");
+                    b.HasOne("HTA.Models.Devotee", "Devotee")
+                        .WithMany("DevoteeMembers")
+                        .HasForeignKey("Devotee_ID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("HTA.Models.Service", b =>

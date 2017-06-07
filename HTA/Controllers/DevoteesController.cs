@@ -35,7 +35,10 @@ namespace HTA.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                devotees = devotees.Where(s => s.First_Name.Contains(searchString));
+                devotees = devotees.Where(s => s.First_Name.Contains(searchString))
+                                            .Concat(devotees.Where(s => s.Last_Name.Contains(searchString)))
+                                            .Concat(devotees.Where(s => s.Home_Phone.Contains(searchString)))
+                                            .Concat(devotees.Where(s => s.Cell_Phone.Contains(searchString)));
             }
 
             int pageSize = 25;
@@ -51,7 +54,6 @@ namespace HTA.Controllers
             }
 
             var devotee = await _context.Devotees
-                .Include(d => d.HeadDevotee)
                 .SingleOrDefaultAsync(m => m.Devotee_ID == id);
             if (devotee == null)
             {
@@ -64,7 +66,6 @@ namespace HTA.Controllers
         // GET: Devotees/Create
         public IActionResult Create()
         {
-            ViewData["Head_Devotee_ID"] = new SelectList(_context.Devotees, "Devotee_ID", "Devotee_ID");
             return View();
         }
 
@@ -73,7 +74,7 @@ namespace HTA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Devotee_ID,Head_Devotee_ID,LoginEmail,Password,TemporaryPassord,Home_Phone,Last_Name,First_Name,Middle_Name,Is_Company,Company_Name,Address_1,Address_2,City,StateID,Zip,Work_Phone,Work_Phone_Ext,Cell_Phone,Fax,Sex,DOB,Wedding_Date,MemberType_ID,Gothram_ID,Star_ID,Is_Active,Is_Mailing,Is_Emailing,Is_ProfileComplete,Last_Modified,Who_Modified,Date_Created,Last_LoggedIn")] Devotee devotee)
+        public async Task<IActionResult> Create([Bind("Devotee_ID,LoginEmail,Password,TemporaryPassord,Home_Phone,Last_Name,First_Name,Middle_Name,Is_Company,Company_Name,Address_1,Address_2,City,StateID,Zip,Work_Phone,Work_Phone_Ext,Cell_Phone,Fax,Sex,DOB,Wedding_Date,MemberType_ID,Gothram_ID,Star_ID,Is_Active,Is_Mailing,Is_Emailing,Is_ProfileComplete,Last_Modified,Who_Modified,Date_Created,Last_LoggedIn")] Devotee devotee)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +82,6 @@ namespace HTA.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["Head_Devotee_ID"] = new SelectList(_context.Devotees, "Devotee_ID", "Devotee_ID", devotee.Head_Devotee_ID);
             return View(devotee);
         }
 
@@ -98,7 +98,6 @@ namespace HTA.Controllers
             {
                 return NotFound();
             }
-            ViewData["Head_Devotee_ID"] = new SelectList(_context.Devotees, "Devotee_ID", "Devotee_ID", devotee.Head_Devotee_ID);
             return View(devotee);
         }
 
@@ -107,7 +106,7 @@ namespace HTA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Devotee_ID,Head_Devotee_ID,LoginEmail,Password,TemporaryPassord,Home_Phone,Last_Name,First_Name,Middle_Name,Is_Company,Company_Name,Address_1,Address_2,City,StateID,Zip,Work_Phone,Work_Phone_Ext,Cell_Phone,Fax,Sex,DOB,Wedding_Date,MemberType_ID,Gothram_ID,Star_ID,Is_Active,Is_Mailing,Is_Emailing,Is_ProfileComplete,Last_Modified,Who_Modified,Date_Created,Last_LoggedIn")] Devotee devotee)
+        public async Task<IActionResult> Edit(int id, [Bind("Devotee_ID,LoginEmail,Password,TemporaryPassord,Home_Phone,Last_Name,First_Name,Middle_Name,Is_Company,Company_Name,Address_1,Address_2,City,StateID,Zip,Work_Phone,Work_Phone_Ext,Cell_Phone,Fax,Sex,DOB,Wedding_Date,MemberType_ID,Gothram_ID,Star_ID,Is_Active,Is_Mailing,Is_Emailing,Is_ProfileComplete,Last_Modified,Who_Modified,Date_Created,Last_LoggedIn")] Devotee devotee)
         {
             if (id != devotee.Devotee_ID)
             {
@@ -134,7 +133,6 @@ namespace HTA.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["Head_Devotee_ID"] = new SelectList(_context.Devotees, "Devotee_ID", "Devotee_ID", devotee.Head_Devotee_ID);
             return View(devotee);
         }
 
@@ -147,7 +145,6 @@ namespace HTA.Controllers
             }
 
             var devotee = await _context.Devotees
-                .Include(d => d.HeadDevotee)
                 .SingleOrDefaultAsync(m => m.Devotee_ID == id);
             if (devotee == null)
             {
@@ -175,8 +172,8 @@ namespace HTA.Controllers
 
         public ActionResult FillServiceMemberList(int devoteeId)
         {
-            var devotees = _context.Devotees.Where(d => d.Head_Devotee_ID == devoteeId);
-            return Json(devotees);
+            var devoteeMembers = _context.DevoteeMembers.Where(d => d.Devotee_ID == devoteeId);
+            return Json(devoteeMembers);
         }
     }
 }

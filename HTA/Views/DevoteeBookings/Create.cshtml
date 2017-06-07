@@ -12,13 +12,13 @@
             type: "GET",
             dataType: "JSON",
             data: { devoteeId: id },
-            success: function (devotees) {
+            success: function (devoteeMembers) {
                 $("#ServiceForDevoteeId").html(""); // clear before appending new list
                 $("#ServiceForDevoteeId").append(
                     $('<option></option>').val(0).html('-- Select Devote Member --'));
-                $.each(devotees, function (i, devotee) {
+                $.each(devoteeMembers, function (i, devoteeMember) {
                     $("#ServiceForDevoteeId").append(
-                        $('<option></option>').val(devotee.devotee_ID).html(devotee.first_Name + ' ' + devotee.last_Name));
+                        $('<option></option>').val(devoteeMember.DevMem_ID).html(devoteeMember.first_Name + ' ' + devoteeMember.last_Name));
                 });
             }
         });

@@ -35,6 +35,7 @@
     <Folder Include="Migrations\" />
     <Folder Include="Migrations\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Migrations\" />
     <Folder Include="Views\DevoteeBookings\" />
   </ItemGroup>
 

@@ -5,28 +5,21 @@
 }
 
 <h2>Index</h2>
-<div class="jumbotron">
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="Devotees" asp-action="Index">
     <p>
-        <a asp-action="Create">Create New</a>
+        Search for Devotee(by FirstName/LastName/PhoneNumber): <input type="text" name="SearchString" value="@ViewData["currentFilter"]">
+        <input type="submit" value="Search" class="btn btn-default" /> |
+        <a asp-action="Index">Back to Full List</a>
     </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().HeadDevotee.First_Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().LoginEmail)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Password)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().TemporaryPassord)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Home_Phone)
-                </th>
+</form>
+<table class="table">
+    <thead>
+        <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.FirstOrDefault().Last_Name)
                 </th>
@@ -37,195 +30,49 @@
                     @Html.DisplayNameFor(model => model.FirstOrDefault().Middle_Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Is_Company)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Company_Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Address_1)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Address_2)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().City)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().StateID)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Zip)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Work_Phone)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Work_Phone_Ext)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Home_Phone)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.FirstOrDefault().Cell_Phone)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Fax)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Sex)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().DOB)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Wedding_Date)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().MemberType_ID)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Gothram_ID)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Star_ID)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().LoginEmail)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.FirstOrDefault().Is_Active)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Is_Mailing)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Is_Emailing)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Is_ProfileComplete)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Last_Modified)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Who_Modified)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Date_Created)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Last_LoggedIn)
-                </th>
-
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model) {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.HeadDevotee.First_Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LoginEmail)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Password)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TemporaryPassord)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Home_Phone)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Last_Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.First_Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Middle_Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Is_Company)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Company_Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Address_1)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Address_2)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.City)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StateID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Zip)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Work_Phone)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Work_Phone_Ext)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cell_Phone)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Fax)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Sex)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DOB)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Wedding_Date)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MemberType_ID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Gothram_ID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Star_ID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Is_Active)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Is_Mailing)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Is_Emailing)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Is_ProfileComplete)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Last_Modified)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Who_Modified)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Date_Created)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Last_LoggedIn)
-                    </td>
-
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Devotee_ID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Devotee_ID">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Devotee_ID">Delete</a>
-                    </td>
-                </tr>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Last_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.First_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Middle_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Home_Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cell_Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoginEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Is_Active)
+            </td>
+            
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Devotee_ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Devotee_ID">Details</a> 
+            </td>
+        </tr>
 }
-        </tbody>
-    </table>
-
-</div>
+    </tbody>
+</table>

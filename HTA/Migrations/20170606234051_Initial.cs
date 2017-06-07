@@ -19,6 +19,10 @@ namespace HTA.Migrations
                 schema: "dbo");
 
             migrationBuilder.DropTable(
+                name: "tbl_Devotee_Member",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
                 name: "tbl_booking",
                 schema: "dbo");
 
