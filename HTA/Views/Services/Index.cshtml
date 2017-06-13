@@ -1,0 +1,131 @@
+@model IEnumerable<HTA.Models.Service>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Service_Desc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fee)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Is_Outside)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Is_Web_Avail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Is_Quick)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CommitteeType_ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Is_Priest)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Is_IT_Exempt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Is_Active)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date_Created)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Last_Modified)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Who_Modified)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Notes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmailReceipt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ToEmailAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmailSubject)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceGroup)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service_Desc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fee)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Is_Outside)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Is_Web_Avail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Is_Quick)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommitteeType_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Is_Priest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Is_IT_Exempt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Is_Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_Created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Last_Modified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Who_Modified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailReceipt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToEmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailSubject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceGroup.ServiceGroup_ID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Service_ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Service_ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Service_ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

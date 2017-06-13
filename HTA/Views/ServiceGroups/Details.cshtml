@@ -1,0 +1,48 @@
+@model HTA.Models.ServiceGroup
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ServiceGroup</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceGroup_Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ServiceGroup_Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_Created)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date_Created)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Modified)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Last_Modified)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Who_Modified)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Who_Modified)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Is_Active)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Is_Active)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ServiceGroup_ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

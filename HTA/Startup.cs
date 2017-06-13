@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using HTA.Models;
+using Stripe;
 
 namespace HTA
 {
@@ -31,6 +32,7 @@ namespace HTA
         {
             services.AddDbContext<HTAContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("HTAContext")));
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
             // Add framework services.
             services.AddMvc();
 
@@ -51,6 +53,8 @@ namespace HTA
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            StripeConfiguration.SetApiKey(Configuration.GetSection("Stripe")["SecretKey"]);
 
             app.UseStaticFiles();
 

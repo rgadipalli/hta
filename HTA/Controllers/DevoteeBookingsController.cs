@@ -87,6 +87,7 @@ select new { booking.DevoteeId, booking.ServiceForDevoteeId, bookingItem.Service
         {
             if (ModelState.IsValid)
             {
+
                 Booking booking = new Booking();
                 booking.DevoteeId = bookingVM.DevoteeId;
                 booking.ServiceForDevoteeId = bookingVM.ServiceForDevoteeId;
@@ -113,7 +114,9 @@ select new { booking.DevoteeId, booking.ServiceForDevoteeId, bookingItem.Service
                 _context.Add(bookingItem);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "ElectronicPayments");
+                //return RedirectToAction("Charge", "DevoteeBookings");
+                
             }
 
             var DevoteeList = _context.Devotees.Where(d => d.Is_Active == true).OrderBy(d => d.First_Name).Select(d => new
@@ -130,17 +133,6 @@ select new { booking.DevoteeId, booking.ServiceForDevoteeId, bookingItem.Service
         }
 
 
-        public ActionResult FillServicesList(int serviceGroupId)
-        {
-            var services = _context.Services.Where(s => s.ServiceGroup_id == serviceGroupId);
-            return Json(services);
-        }
-
         
-        public ActionResult GetServiceFee(int serviceId)
-        {
-            var service = _context.Services.Where(s => s.Service_ID == serviceId);
-            return Json(service);
-        }
     }
 }

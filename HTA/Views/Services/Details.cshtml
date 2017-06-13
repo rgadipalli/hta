@@ -1,0 +1,120 @@
+@model HTA.Models.Service
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Service</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Service_Desc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Service_Desc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fee)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fee)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Is_Outside)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Is_Outside)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Is_Web_Avail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Is_Web_Avail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Is_Quick)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Is_Quick)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CommitteeType_ID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CommitteeType_ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Is_Priest)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Is_Priest)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Is_IT_Exempt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Is_IT_Exempt)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Is_Active)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Is_Active)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_Created)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date_Created)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Modified)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Last_Modified)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Who_Modified)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Who_Modified)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailReceipt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmailReceipt)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ToEmailAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ToEmailAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailSubject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmailSubject)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceGroup)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ServiceGroup.ServiceGroup_ID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Service_ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

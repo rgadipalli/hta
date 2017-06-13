@@ -18,13 +18,13 @@ namespace HTA.Models
         public bool? Is_Outside { get; set; }
         public bool? Is_Web_Avail { get; set; }
         public bool? Is_Quick { get; set; }
-        public int CommitteeType_ID { get; set; }
+        public int? CommitteeType_ID { get; set; }
         public bool? Is_Priest { get; set; }
         public bool? Is_IT_Exempt { get; set; }
         public bool? Is_Active { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime Date_Created { get; set; }
+        public DateTime? Date_Created { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Last_Modified { get; set; }

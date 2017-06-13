@@ -8,7 +8,7 @@
     function FillServiceMemberList() {
         var id = $('#DevoteeId').val();
         $.ajax({
-            url: '/Devotees/FillServiceMemberList',
+            url: '/DevoteeMembers/FillServiceMemberList',
             type: "GET",
             dataType: "JSON",
             data: { devoteeId: id },
@@ -27,7 +27,7 @@
     function FillServicesList() {
         var id = $('#ServiceGroupID').val();
         $.ajax({
-            url: '/DevoteeBookings/FillServicesList',
+            url: '/Services/FillServicesList',
             type: "GET",
             dataType: "JSON",
             data: { serviceGroupId: id },
@@ -43,25 +43,25 @@
         });
     }
 
-        function GetServiceFee() {
-            var id = $('#ServiceID').val();
-            $.ajax({
-                url: '/DevoteeBookings/GetServiceFee',
-                type: "GET",
-                dataType: "JSON",
-                data: { serviceId: id },
-                success: function (service) {
-                    $("#HdnServiceFee").html(""); 
-                    $("#HdnServiceFee").val(service[0].fee);
-                }
-            });
+    function GetServiceFee() {
+        var id = $('#ServiceID').val();
+        $.ajax({
+            url: '/Services/GetServiceFee',
+            type: "GET",
+            dataType: "JSON",
+            data: { serviceId: id },
+            success: function (service) {
+                $("#HdnServiceFee").html("");
+                $("#HdnServiceFee").val(service[0].fee);
+            }
+        });
     }
 
-        function CalculateServiceFee() {
-            var noUnits = $('#NoUnits').val();
-            var serviceFee = $('#HdnServiceFee').val();
-            $("#Service_Fee").val(parseFloat(serviceFee) * parseFloat(noUnits));
-        }
+    function CalculateServiceFee() {
+        var noUnits = $('#NoUnits').val();
+        var serviceFee = $('#HdnServiceFee').val();
+        $("#Service_Fee").val(parseFloat(serviceFee) * parseFloat(noUnits));
+    }
 </script>
 
 
@@ -75,7 +75,7 @@
         <div class="form-group">
             <label asp-for="DevoteeId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="DevoteeId" class ="form-control" asp-items="ViewBag.DevoteeNames"  onchange="FillServiceMemberList()"></select>
+                <select asp-for="DevoteeId" class="form-control" asp-items="ViewBag.DevoteeNames" onchange="FillServiceMemberList()"></select>
             </div>
         </div>
         <div class="form-group">
@@ -87,13 +87,13 @@
         <div class="form-group">
             <label asp-for="ServiceGroupID" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="ServiceGroupID" class="form-control" asp-items="ViewBag.ServiceGroupId"  onchange="FillServicesList()"></select>
+                <select asp-for="ServiceGroupID" class="form-control" asp-items="ViewBag.ServiceGroupId" onchange="FillServicesList()"></select>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="ServiceID" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="ServiceID" class ="form-control"  onchange="GetServiceFee()"></select>
+                <select asp-for="ServiceID" class="form-control" onchange="GetServiceFee()"></select>
                 <input type="hidden" id="HdnServiceFee" />
             </div>
         </div>
@@ -107,14 +107,7 @@
         <div class="form-group">
             <label asp-for="ServiceTimeID" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                @*<input asp-for="ServiceTimeID" class="form-control" />*@
-                @*@(Html.Kendo().TimePicker()
-                .Name("ServiceTimeID")
-                .Value("10:00 AM")
-                .HtmlAttributes(new { style = "width: 100%", title = "timepicker" })
-                )*@
-                @*@Html.BootstrapTimePickerFor(model => model.ServiceTimeID)*@
-                <select asp-for="ServiceTimeID" class ="form-control">
+                <select asp-for="ServiceTimeID" class="form-control">
                     <option value="0">12:00 AM</option>
                     <option value="1">1:00 AM</option>
                     <option value="2">2:00 AM</option>
@@ -174,7 +167,7 @@
         <div class="form-group">
             <label asp-for="NoUnits" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="NoUnits" class="form-control"  onchange="CalculateServiceFee()" />
+                <input asp-for="NoUnits" class="form-control" onchange="CalculateServiceFee()" />
                 <span asp-validation-for="NoUnits" class="text-danger"></span>
             </div>
         </div>
@@ -193,10 +186,28 @@
     </div>
 </form>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@using Microsoft.Extensions.Options
+@inject IOptions<StripeSettings> Stripe
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+<form action="/Charge" method="POST" hidden="hidden" id="frm-charge" >
+    <article>
+        <label>Amount: $500.00</label>
+    </article>
+    <script src="//checkout.stripe.com/v2/checkout.js"
+            class="stripe-button"
+            data-key="@Stripe.Value.PublishableKey"
+            data-locale="auto"
+            data-description="Sample Charge"
+            data-amount="500">
+    </script>
+</form>
+
+
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
