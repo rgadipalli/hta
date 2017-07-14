@@ -23,7 +23,9 @@ namespace HTA.Models
         [Column(TypeName = "money")]
         public decimal Service_Fee { get; set; }
 
+        [ForeignKey("BookingId")]
         public virtual Booking Booking { get; set; }
+        [ForeignKey("ServiceID")]
         public virtual Service Service { get; set; }
 
     }

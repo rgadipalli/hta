@@ -13,11 +13,11 @@
             dataType: "JSON",
             data: { devoteeId: id },
             success: function (devotees) {
-                $("#ServiceForDevoteeId").html(""); // clear before appending new list
-                $("#ServiceForDevoteeId").append(
+                $("#DevoteeMemID").html(""); // clear before appending new list
+                $("#DevoteeMemID").append(
                     $('<option></option>').val(0).html('-- Select Devote Member --'));
                 $.each(devotees, function (i, devotee) {
-                    $("#ServiceForDevoteeId").append(
+                    $("#DevoteeMemID").append(
                         $('<option></option>').val(devotee.devotee_ID).html(devotee.first_Name + ' ' + devotee.last_Name));
                 });
             }
@@ -42,9 +42,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="ServiceForDevoteeId" class="col-md-2 control-label">Service For Devotee</label>
+            <label asp-for="DevoteeMemID" class="col-md-2 control-label">Service For Devotee</label>
             <div class="col-md-10">
-                <select asp-for="ServiceForDevoteeId" class="form-control"></select>
+                <select asp-for="DevoteeMemID" class="form-control"></select>
             </div>
         </div>
         

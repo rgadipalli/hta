@@ -24,13 +24,13 @@ namespace HTA.Controllers
             List<BookingVM> BookingVMlist = new List<BookingVM>(); 
             var bookingsList = (from booking in _context.Bookings
                                 join bookingItem in _context.BookingItems on booking.BookingID equals bookingItem.BookingId
-select new { booking.DevoteeId, booking.ServiceForDevoteeId, bookingItem.ServiceID, bookingItem.ServiceDate, bookingItem.PriestI, bookingItem.PriestII, bookingItem.PriestIII, bookingItem.PriestAlloted, bookingItem.NoUnits, bookingItem.Service_Fee}).ToList();
+select new { booking.DevoteeId, booking.DevoteeMemID, bookingItem.ServiceID, bookingItem.ServiceDate, bookingItem.PriestI, bookingItem.PriestII, bookingItem.PriestIII, bookingItem.PriestAlloted, bookingItem.NoUnits, bookingItem.Service_Fee}).ToList();
 
             foreach (var item in bookingsList)
             {
                 BookingVM objbvm = new BookingVM(); // ViewModel
                 objbvm.DevoteeId = item.DevoteeId;
-                objbvm.ServiceForDevoteeId = item.ServiceForDevoteeId;
+                objbvm.DevoteeMemID = item.DevoteeMemID;
                 objbvm.ServiceID = item.ServiceID;
                 objbvm.ServiceDate = item.ServiceDate;
                 objbvm.PriestI = item.PriestI;
@@ -83,14 +83,14 @@ select new { booking.DevoteeId, booking.ServiceForDevoteeId, bookingItem.Service
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DevoteeId,ServiceForDevoteeId,ServiceID,ServiceDate,ServiceTimeID,PriestI,PriestII,PriestIII,PriestAlloted,NoUnits,Service_Fee")] BookingVM bookingVM)
+        public async Task<IActionResult> Create([Bind("DevoteeId,DevoteeMemID,ServiceID,ServiceDate,ServiceTimeID,PriestI,PriestII,PriestIII,PriestAlloted,NoUnits,Service_Fee")] BookingVM bookingVM)
         {
             if (ModelState.IsValid)
             {
 
                 Booking booking = new Booking();
                 booking.DevoteeId = bookingVM.DevoteeId;
-                booking.ServiceForDevoteeId = bookingVM.ServiceForDevoteeId;
+                booking.DevoteeMemID = bookingVM.DevoteeMemID;
                 booking.IsPaid = false;
                 booking.IsActive = true;
                 booking.IsApproved = true;

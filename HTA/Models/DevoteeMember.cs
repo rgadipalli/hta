@@ -33,6 +33,7 @@ namespace HTA.Models
         public DateTime Last_Modified { get; set; }
         public string Who_Modified { get; set; }
 
+        [ForeignKey("Devotee_ID")]
         public Devotee Devotee { get; set; }
     }
 }

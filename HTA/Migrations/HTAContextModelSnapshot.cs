@@ -42,7 +42,7 @@ namespace HTA.Migrations
 
                     b.Property<int?>("ReceiptId");
 
-                    b.Property<int>("ServiceForDevoteeId")
+                    b.Property<int>("DevoteeMemID")
                         .HasColumnName("DevoteeMemID");
 
                     b.HasKey("BookingID");

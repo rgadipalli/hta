@@ -65,7 +65,7 @@ namespace HTA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BookingID,DevoteeId,ServiceForDevoteeId,IsApproved,IsPaid,ApprovedDate,ApprovedBy,DateCreated,LastModified,LastModifiedBy,IsActive,ReceiptId")] Booking booking)
+        public async Task<IActionResult> Create([Bind("BookingID,DevoteeId,DevoteeMemID,IsApproved,IsPaid,ApprovedDate,ApprovedBy,DateCreated,LastModified,LastModifiedBy,IsActive,ReceiptId")] Booking booking)
         {
             booking.IsApproved = true;
             booking.IsPaid = false;
@@ -119,7 +119,7 @@ namespace HTA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BookingID,DevoteeId,ServiceForDevoteeId,IsApproved,IsPaid,ApprovedDate,ApprovedBy,DateCreated,LastModified,LastModifiedBy,IsActive,ReceiptId")] Booking booking)
+        public async Task<IActionResult> Edit(int id, [Bind("BookingID,DevoteeId,DevoteeMemID,IsApproved,IsPaid,ApprovedDate,ApprovedBy,DateCreated,LastModified,LastModifiedBy,IsActive,ReceiptId")] Booking booking)
         {
             if (id != booking.BookingID)
             {

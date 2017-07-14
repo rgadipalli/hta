@@ -16,8 +16,7 @@ namespace HTA.ViewModels
         public int ID { get; set; }
 
         public int DevoteeId { get; set; }
-        [Column("DevoteeMemID")]
-        public int ServiceForDevoteeId { get; set; }
+        public int DevoteeMemID { get; set; }
         public int ServiceID { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
@@ -31,9 +30,13 @@ namespace HTA.ViewModels
         [Column(TypeName = "money")]
         public decimal Service_Fee { get; set; }
 
+        [ForeignKey("ServiceGroup_id")]
         public virtual Devotee Devotee { get; set; }
+        [ForeignKey("DevoteeMemID")]
+        public virtual DevoteeMember DevoteeMember { get; set; }
         public virtual int ServiceGroupID { get; set; }
         public virtual ServiceGroup ServiceGroup { get; set; }
+        [ForeignKey("ServiceGroup_id")]
         public virtual Service Service { get; set; }
     }
 }

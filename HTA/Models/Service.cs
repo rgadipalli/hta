@@ -35,6 +35,7 @@ namespace HTA.Models
         public string EmailSubject { get; set; }
 
         public int? ServiceGroup_id { get; set; }
+        [ForeignKey("ServiceGroup_id")]
         public ServiceGroup ServiceGroup { get; set; }
 
     }

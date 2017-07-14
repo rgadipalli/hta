@@ -14,7 +14,7 @@ namespace HTA.Models
         public int BookingID { get; set; }
         public int DevoteeId { get; set; }
         [Column("DevoteeMemID")]
-        public int ServiceForDevoteeId { get; set; }
+        public int DevoteeMemID { get; set; }
         public bool? IsApproved { get; set; }
         public bool? IsPaid { get; set; }
         [DataType(DataType.Date)]
