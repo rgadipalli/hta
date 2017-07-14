@@ -30,10 +30,7 @@ namespace HTA.Models
         public DateTime Last_Modified { get; set; }
         public string Who_Modified { get; set; }
         public string Notes { get; set; }
-        public bool? EmailReceipt { get; set; }
-        public string ToEmailAddress { get; set; }
-        public string EmailSubject { get; set; }
-
+        
         public int? ServiceGroup_id { get; set; }
         [ForeignKey("ServiceGroup_id")]
         public ServiceGroup ServiceGroup { get; set; }
