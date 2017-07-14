@@ -8,14 +8,19 @@
 
     <form action="/ElectronicPayments/Charge" method="POST">
         <article>
-            <label>Amount: $500.00</label>
+            <label>Devotee Email: @ViewBag.DevoteeAndServiceDetails["DevoteeEmail"]</label><br/>
+            <label>Devotee Name: @ViewBag.DevoteeAndServiceDetails["ServiceForDevotee"]</label><br/>
+            <label id="serviceName">Service: @ViewBag.DevoteeAndServiceDetails["ServiceName"]</label><br/>
+            <label id="serviceFee">Amount: @string.Format("{0:C}", ViewBag.DevoteeAndServiceDetails["ServiceFee"])</label><br/>
         </article>
         <script src="//checkout.stripe.com/v2/checkout.js"
                 class="stripe-button"
                 data-key="@Stripe.Value.PublishableKey"
                 data-locale="auto"
-                data-description="Sample Charge"
-                data-amount="500">
+                data-description=@ViewBag.DevoteeAndServiceDetails["ServiceName"]
+                data-amount=@string.Format("{0:C}", ViewBag.DevoteeAndServiceDetails["ServiceFee"])
+                data-email=@ViewBag.DevoteeAndServiceDetails["DevoteeEmail"]>
         </script>
+        
     </form>
 
