@@ -114,7 +114,24 @@ select new { booking.DevoteeId, booking.DevoteeMemID, bookingItem.ServiceID, boo
                 _context.Add(bookingItem);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction("Index", "ElectronicPayments");
+                var devMember = await _context.DevoteeMembers.SingleOrDefaultAsync(d => d.DevMem_ID == bookingVM.DevoteeMemID);
+                var devotee = await _context.Devotees.SingleOrDefaultAsync(d => d.Devotee_ID == booking.DevoteeId);
+                var service = await _context.Services.SingleOrDefaultAsync(s => s.Service_ID == bookingVM.ServiceID);
+                
+                var devoteeAndServiceDetails = new Dictionary<string, string>
+                {
+                    ["BookingId"] = booking.BookingID.ToString(),
+                    ["ServiceForDevotee"] = devMember.First_Name + " " + devMember.Last_Name,
+                    ["DevoteeEmail"] = string.IsNullOrEmpty(devotee.LoginEmail)
+                        ? "rajitha.gadipalli@gmail.com"
+                        : devotee.LoginEmail,
+                    ["ServiceName"] = service.Service_Desc,
+                    ["ServiceFee"] = bookingVM.Service_Fee.ToString("c")
+                };
+                ViewBag.DevoteeAndServiceDetails = devoteeAndServiceDetails;
+                
+
+                return RedirectToAction("Index", "ElectronicPayments", new { bookingId = booking.BookingID});
                 //return RedirectToAction("Charge", "DevoteeBookings");
                 
             }
